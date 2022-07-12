@@ -19,7 +19,7 @@ namespace ProjectAPI.Models
         public DateTime DateOfJoin { get; set; }
         public string EmployeeDepartment { get; set; }
 
-        public int AvailabeleBalanceLeave { get; set; }
+        public int AvailableBalanceLeave { get; set; }
         public string Password { get; set; }
     }
 }
