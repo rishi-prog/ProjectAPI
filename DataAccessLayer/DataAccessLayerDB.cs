@@ -14,7 +14,7 @@ namespace ProjectAPI.DataAccessLayer
 
         }
 
-        public DbSet<EmployeeModelDB> Employee { get; set; }
+        public DbSet<EmployeeModelDB> Employee { get; set; } // table name 
 
     }
 }
