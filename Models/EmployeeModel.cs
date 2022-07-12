@@ -10,16 +10,17 @@ namespace ProjectAPI.Models
     {
        
         public int EmployeeId { get; set; }
+        [Required]
         public string EmployeeName { get; set; }
-
+        [Required]
         public string EmployeeEmail { get; set; }
-
+        [Required]
         public long EmployeeMobieNumber { get; set; }
-
+        [Required]
         public DateTime DateOfJoin { get; set; }
         public string EmployeeDepartment { get; set; }
-
-        public int  AvailableBalanceLeave { get; set; }
+        [Required]
+        public int BalanceLeave { get; set; }
 
     }
 }
