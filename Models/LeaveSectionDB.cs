@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations;
 namespace ProjectAPI.Models
 {
     public class LeaveSectionDB
     {
-        public int EmployeeId { get; set; }
 
+        public int EmployeeId { get; set; }
+        [Key]
         public int LeaveID { get; set; }
         public int NumberOfDay { get; set; }
         public DateTime StrartDate { get; set; }
