@@ -10,8 +10,8 @@ using ProjectAPI.DataAccessLayer;
 namespace ProjectAPI.Migrations
 {
     [DbContext(typeof(DataAccessLayerDB))]
-    [Migration("20220712172658_initLMS_TeamONe")]
-    partial class initLMS_TeamONe
+    [Migration("20220713121314_initLMSTeam_One")]
+    partial class initLMSTeam_One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

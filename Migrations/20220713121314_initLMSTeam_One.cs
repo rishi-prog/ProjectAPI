@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectAPI.Migrations
 {
-    public partial class initLMS_TeamONe : Migration
+    public partial class initLMSTeam_One : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
