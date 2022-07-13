@@ -19,7 +19,7 @@ namespace ProjectAPI.Controllers
             this.managerModelRepo = managerModelRepo;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("MyMangerDetails/{id}")]
 
         public async Task<IActionResult> getMangaerDetails(int? id)

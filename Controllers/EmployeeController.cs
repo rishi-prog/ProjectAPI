@@ -18,7 +18,7 @@ namespace ProjectAPI.Controllers
         {
             this.employeeModelRepo = employeeModelRepo;
         }
-        [HttpPost]
+        [HttpGet]
         [Route("MyDetails/{id}")]
 
         public async Task<IActionResult> MyDetails_Id(int? id) 
