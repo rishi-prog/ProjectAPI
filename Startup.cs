@@ -34,7 +34,6 @@ namespace ProjectAPI
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IEmployeeModelRepo, EmployeeModelRepo>();
             services.AddScoped<IManagerModelRepo, ManagerModelRepo>();
-         
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectAPI", Version = "v1" });
