@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProjectAPI.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
+using ProjectAPI.Models;
+using ProjectAPI.Repository;
 
 namespace ProjectAPI
 {
@@ -29,6 +31,9 @@ namespace ProjectAPI
         {
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IEmployeeModelRepo, EmployeeModelRepo>();
+            services.AddScoped<IManagerModelRepo, ManagerModelRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectAPI", Version = "v1" });
