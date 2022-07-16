@@ -24,10 +24,27 @@ namespace ProjectAPI.Controllers
         [Route("ShowAll_Leaves/{id}")]
         public  List<LeaveSection> Leave_List(int? id)
         {
-            var list =  leaveSectionRepo.ShowAllLeaves(id);
+            var list = leaveSectionRepo.ShowAllLeaves(id);
             return list ;
         }
 
+        [HttpPatch]
+        [Route("ChangeStatus/{id}")]
+
+        public int ChangeState(int? id, LeaveSection leaveSection)
+        {
+            var data = leaveSectionRepo.ManagerState(id,leaveSection);
+            return 1;
+        }
+
+        [HttpPut]
+        [Route("NewLeave")]
+
+        public async Task<int> AddNewLeave(LeaveSection leave)
+        {
+            var newleave = await leaveSectionRepo.NewLeave(leave);
+            return 1; 
+        }
     }
 
    

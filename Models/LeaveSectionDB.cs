@@ -14,6 +14,7 @@ namespace ProjectAPI.Models
       
         [Key]
         public int LeaveID { get; set; }
+
         [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         public int NumberOfDay { get; set; }

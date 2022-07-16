@@ -45,6 +45,7 @@ namespace ProjectAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LeaveSection", x => x.LeaveID);
+                    //table.ForeignKey("FK_LeavSection",x =>x.EmployeeId);
                 });
 
             migrationBuilder.CreateTable(

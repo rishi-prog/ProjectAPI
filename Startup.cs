@@ -34,6 +34,9 @@ namespace ProjectAPI
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IEmployeeModelRepo, EmployeeModelRepo>();
             services.AddScoped<IManagerModelRepo, ManagerModelRepo>();
+            services.AddScoped<ILeaveSectionRepo, LeaveSectionRepo>();
+            services.AddCors(option => option.AddDefaultPolicy
+          (b => b.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectAPI", Version = "v1" });
@@ -54,6 +57,7 @@ namespace ProjectAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

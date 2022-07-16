@@ -20,6 +20,21 @@ namespace ProjectAPI.Repository
             this.mapper = mapper;
         }
 
+      
+
+        public async Task<int> Insert_Employee_Async(EmployeeModel employeeModel)
+        {
+            var add = mapper.Map<EmployeeModelDB>(employeeModel);
+
+            if (add != null) 
+            {
+               await dataAccessLayerDB.Employee.AddAsync(add);
+                await dataAccessLayerDB.SaveChangesAsync();
+
+            }
+
+            return 1;
+        }
 
         public async Task<EmployeeModel> MyDetailsAsync(int? id)
         {
@@ -27,6 +42,13 @@ namespace ProjectAPI.Repository
             var details_View = mapper.Map<EmployeeModel>(details);
 
             return details_View;
+        }
+
+        public async Task<List<EmployeeModel>> ShowAllEMPAsync()
+        {
+            var list_emp = await dataAccessLayerDB.Employee.ToListAsync();
+            var map_list = mapper.Map<List<EmployeeModel>>(list_emp);
+            return map_list;
         }
     }
 }
