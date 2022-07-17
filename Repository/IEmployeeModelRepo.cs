@@ -11,5 +11,6 @@ namespace ProjectAPI.Repository
         Task<EmployeeModel> MyDetailsAsync(int? id);
         Task<List<EmployeeModel>> ShowAllEMPAsync();
         Task<int> Insert_Employee_Async(EmployeeModel employeeModel);
+        Task<int> Login_Async(string email, string password);
     }
 }

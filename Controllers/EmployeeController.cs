@@ -42,5 +42,14 @@ namespace ProjectAPI.Controllers
             var add = await employeeModelRepo.Insert_Employee_Async(employeeModel);
             return 1;
         }
+
+        [HttpPut]
+        [Route("Login/{email}/{password}")]
+        public async Task<int> Login(string email, string password)
+        {
+            var add = await employeeModelRepo.Login_Async(email, password);
+            return 1;
+        }
+
     }
 }

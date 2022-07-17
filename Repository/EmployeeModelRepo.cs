@@ -36,6 +36,14 @@ namespace ProjectAPI.Repository
             return 1;
         }
 
+        public async Task<int> Login_Async(string email, string password)
+        {
+            var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeEmail == email & x.Password == password);
+            var map = mapper.Map<EmployeeModel>(data);
+
+            return 1;
+        }
+
         public async Task<EmployeeModel> MyDetailsAsync(int? id)
         {
             var details = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId==id);
@@ -50,5 +58,6 @@ namespace ProjectAPI.Repository
             var map_list = mapper.Map<List<EmployeeModel>>(list_emp);
             return map_list;
         }
+
     }
 }
