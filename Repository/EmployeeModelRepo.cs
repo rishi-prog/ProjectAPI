@@ -20,18 +20,26 @@ namespace ProjectAPI.Repository
             this.mapper = mapper;
         }
 
-      
-
-        public async Task<int> Insert_Employee_Async(EmployeeModel employeeModel)
+        public async Task<int> DeleteEmp_Async(int? id)
         {
-            var add = mapper.Map<EmployeeModelDB>(employeeModel);
-
-            if (add != null) 
+            var data = await dataAccessLayerDB.Employee.FirstAsync(x=>x.EmployeeId==id);
+            if (data != null) 
             {
-               await dataAccessLayerDB.Employee.AddAsync(add);
+                 dataAccessLayerDB.Employee.Remove(data);
+                await dataAccessLayerDB.SaveChangesAsync();
+            }
+
+            return 1;
+        }
+
+        public async Task<int> Insert_Employee_Async(EmployeeModelDB employeeModelDB)
+        {
+           
+           
+               await dataAccessLayerDB.Employee.AddAsync(employeeModelDB);
                 await dataAccessLayerDB.SaveChangesAsync();
 
-            }
+          
 
             return 1;
         }
@@ -59,5 +67,20 @@ namespace ProjectAPI.Repository
             return map_list;
         }
 
+        public async Task<int> Update_Async(int? id, EmployeeModel employeeModel)
+        {
+            var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId == id);
+            if (data != null) 
+            {         
+        data.EmployeeName = employeeModel.EmployeeName;
+                data.EmployeeEmail = employeeModel.EmployeeEmail;
+                data.EmployeeMobieNumber = employeeModel.EmployeeMobieNumber;
+                data.DateOfJoin = employeeModel.DateOfJoin;
+                data.EmployeeDepartment = employeeModel.EmployeeDepartment;
+                data.BalanceLeave = employeeModel.BalanceLeave;
+               await dataAccessLayerDB.SaveChangesAsync();
+            }
+            return 1;
+        }
     }
 }

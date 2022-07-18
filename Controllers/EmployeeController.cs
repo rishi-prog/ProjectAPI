@@ -35,11 +35,11 @@ namespace ProjectAPI.Controllers
             var get_allemp = await employeeModelRepo.ShowAllEMPAsync();
             return Ok(get_allemp);
         }
-        [HttpPut]
+        [HttpPost]
         [Route("InsertEmpolyee")]
-        public async Task<int> InsertEmployee(EmployeeModel employeeModel)
+        public async Task<int> InsertEmployee(EmployeeModelDB employeeModelDB)
         {
-            var add = await employeeModelRepo.Insert_Employee_Async(employeeModel);
+            var add = await employeeModelRepo.Insert_Employee_Async(employeeModelDB);
             return 1;
         }
 
@@ -50,6 +50,21 @@ namespace ProjectAPI.Controllers
             var add = await employeeModelRepo.Login_Async(email, password);
             return 1;
         }
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public async Task<int> Delete(int? id)
+        {
+            var get_details = await employeeModelRepo.DeleteEmp_Async(id);
+            return 1;
+        }
 
+        [HttpPost]
+        [Route("Update/{id}")]
+
+        public async Task<int> Update(int? id,EmployeeModel employeeModelDB)
+        {
+            var add = await employeeModelRepo.Update_Async(id ,employeeModelDB);
+            return 1;
+        }
     }
 }
