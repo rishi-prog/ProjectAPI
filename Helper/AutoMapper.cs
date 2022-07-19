@@ -14,6 +14,7 @@ namespace ProjectAPI.Helper
             CreateMap<EmployeeModel, EmployeeModelDB>().ReverseMap();
             CreateMap<LeaveSection, LeaveSectionDB>().ReverseMap();
             CreateMap<ManagerModel, ManagerModelDB>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeDB>().ReverseMap();
         }
 
     }

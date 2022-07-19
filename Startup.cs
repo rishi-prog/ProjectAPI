@@ -33,6 +33,7 @@ namespace ProjectAPI
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IEmployeeModelRepo, EmployeeModelRepo>();
+            services.AddScoped<ILeaveTypeRepo, LeaveTypeRepo>();
             services.AddScoped<IManagerModelRepo, ManagerModelRepo>();
             services.AddScoped<ILeaveSectionRepo, LeaveSectionRepo>();
             services.AddCors(option => option.AddDefaultPolicy
