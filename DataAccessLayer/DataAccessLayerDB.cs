@@ -17,6 +17,7 @@ namespace ProjectAPI.DataAccessLayer
         public DbSet<EmployeeModelDB> Employee { get; set; }
         public DbSet<ManagerModelDB> Manager { get; set; }
         public DbSet<LeaveSectionDB> LeaveSection { get; set; }
+        public DbSet<LeaveTypeDB> LeaveType { get; set; }
        
     }
 }

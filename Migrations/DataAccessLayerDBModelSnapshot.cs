@@ -95,6 +95,32 @@ namespace ProjectAPI.Migrations
                     b.ToTable("LeaveSection");
                 });
 
+            modelBuilder.Entity("ProjectAPI.Models.LeaveTypeDB", b =>
+                {
+                    b.Property<int>("LeaveTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("EarnedLeave")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaternityLeave")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SickLeave")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LeaveTypeID");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("LeaveType");
+                });
+
             modelBuilder.Entity("ProjectAPI.Models.ManagerModelDB", b =>
                 {
                     b.Property<int>("ManagerId")
@@ -128,6 +154,17 @@ namespace ProjectAPI.Migrations
                 });
 
             modelBuilder.Entity("ProjectAPI.Models.LeaveSectionDB", b =>
+                {
+                    b.HasOne("ProjectAPI.Models.EmployeeModelDB", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("ProjectAPI.Models.LeaveTypeDB", b =>
                 {
                     b.HasOne("ProjectAPI.Models.EmployeeModelDB", "Employee")
                         .WithMany()
