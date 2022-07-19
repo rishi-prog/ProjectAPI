@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectAPI.Models
 {
@@ -19,7 +20,15 @@ namespace ProjectAPI.Models
         public DateTime DateOfJoin { get; set; }
         public string EmployeeDepartment { get; set; }
 
-        public int BalanceLeave { get; set; }
         public string Password { get; set; }
+
+        public int ManagerId { get; set; }
+        [ForeignKey("ManagerId")]
+        public virtual ManagerModelDB Manager { get; set; }
+
+
+
+
+
     }
 }

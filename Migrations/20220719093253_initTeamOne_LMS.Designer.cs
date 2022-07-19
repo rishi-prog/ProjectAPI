@@ -10,8 +10,8 @@ using ProjectAPI.DataAccessLayer;
 namespace ProjectAPI.Migrations
 {
     [DbContext(typeof(DataAccessLayerDB))]
-    [Migration("20220713121314_initLMSTeam_One")]
-    partial class initLMSTeam_One
+    [Migration("20220719093253_initTeamOne_LMS")]
+    partial class initTeamOne_LMS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,6 @@ namespace ProjectAPI.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("BalanceLeave")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateOfJoin")
                         .HasColumnType("datetime2");
 
@@ -46,10 +43,15 @@ namespace ProjectAPI.Migrations
                     b.Property<string>("EmployeeName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Employee");
                 });
@@ -90,6 +92,8 @@ namespace ProjectAPI.Migrations
 
                     b.HasKey("LeaveID");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("LeaveSection");
                 });
 
@@ -112,6 +116,28 @@ namespace ProjectAPI.Migrations
                     b.HasKey("ManagerId");
 
                     b.ToTable("Manager");
+                });
+
+            modelBuilder.Entity("ProjectAPI.Models.EmployeeModelDB", b =>
+                {
+                    b.HasOne("ProjectAPI.Models.ManagerModelDB", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("ProjectAPI.Models.LeaveSectionDB", b =>
+                {
+                    b.HasOne("ProjectAPI.Models.EmployeeModelDB", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 #pragma warning restore 612, 618
         }

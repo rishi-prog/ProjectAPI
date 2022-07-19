@@ -47,9 +47,14 @@ namespace ProjectAPI.Repository
         public async Task<int> Login_Async(string email, string password)
         {
             var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeEmail == email & x.Password == password);
-            var map = mapper.Map<EmployeeModel>(data);
+            if (data != null) {
 
-            return 1;
+                var map = mapper.Map<EmployeeModel>(data);
+                return 1;
+            }
+
+            return 0;
+           
         }
 
         public async Task<EmployeeModel> MyDetailsAsync(int? id)
@@ -77,7 +82,7 @@ namespace ProjectAPI.Repository
                 data.EmployeeMobieNumber = employeeModel.EmployeeMobieNumber;
                 data.DateOfJoin = employeeModel.DateOfJoin;
                 data.EmployeeDepartment = employeeModel.EmployeeDepartment;
-                data.BalanceLeave = employeeModel.BalanceLeave;
+                
                await dataAccessLayerDB.SaveChangesAsync();
             }
             return 1;

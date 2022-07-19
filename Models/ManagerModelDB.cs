@@ -12,8 +12,7 @@ namespace ProjectAPI.Models
     {
         [Key]
         public int ManagerId { get; set; }
-        [ForeignKey("EmployeeId")]
-        public int EmployeeId { get; set; }
+       
         public string ManagerName { get; set; }
         public string ManagerEmail { get; set; }
         public long ManagerMobileNumber { get; set; }
