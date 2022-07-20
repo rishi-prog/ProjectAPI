@@ -57,6 +57,13 @@ namespace ProjectAPI.Repository
            
         }
 
+        public async Task<EmployeeModelDB> Login_Async2(string email, string password)
+        {
+            var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeEmail == email & x.Password == password);
+            return data;
+            
+        }
+
         public async Task<EmployeeModel> MyDetailsAsync(int? id)
         {
             var details = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId==id);
