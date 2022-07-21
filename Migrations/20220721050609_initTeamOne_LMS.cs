@@ -12,7 +12,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     ManagerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "5000, 1"),
                     ManagerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false)
@@ -27,7 +27,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "10000, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeMobieNumber = table.Column<long>(type: "bigint", nullable: false),
@@ -52,7 +52,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "400, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     ManagerId = table.Column<int>(type: "int", nullable: false),
                     NumberOfDay = table.Column<int>(type: "int", nullable: false),
@@ -86,7 +86,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "10, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
