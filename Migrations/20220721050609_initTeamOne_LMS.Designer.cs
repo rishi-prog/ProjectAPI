@@ -10,7 +10,7 @@ using ProjectAPI.DataAccessLayer;
 namespace ProjectAPI.Migrations
 {
     [DbContext(typeof(DataAccessLayerDB))]
-    [Migration("20220719131448_initTeamOne_LMS")]
+    [Migration("20220721050609_initTeamOne_LMS")]
     partial class initTeamOne_LMS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,9 @@ namespace ProjectAPI.Migrations
                     b.Property<string>("ManagerComments")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumberOfDay")
                         .HasColumnType("int");
 
@@ -93,6 +96,8 @@ namespace ProjectAPI.Migrations
                     b.HasKey("LeaveID");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("LeaveSection");
                 });
@@ -163,7 +168,15 @@ namespace ProjectAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjectAPI.Models.ManagerModelDB", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Employee");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("ProjectAPI.Models.LeaveTypeDB", b =>

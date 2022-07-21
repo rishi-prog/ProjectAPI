@@ -44,10 +44,10 @@ namespace ProjectAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Login/{email}/{password}")]
-        public async Task<int> Login(string email, string password)
+        [Route("Login/{id}/{password}")]
+        public async Task<int> Login(int id, string password)
         {
-            var add = await employeeModelRepo.Login_Async(email, password);
+            var add = await employeeModelRepo.Login_Async(id, password);
             if (add == 0) {
                 return 0;
             }

@@ -12,7 +12,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     ManagerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "5000, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ManagerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false)
@@ -27,7 +27,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "10000, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeMobieNumber = table.Column<long>(type: "bigint", nullable: false),
@@ -52,8 +52,9 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "101, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ManagerId = table.Column<int>(type: "int", nullable: false),
                     NumberOfDay = table.Column<int>(type: "int", nullable: false),
                     StrartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -70,8 +71,14 @@ namespace ProjectAPI.Migrations
                         name: "FK_LeaveSection_Employee_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employee",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EmployeeId"
+                       );
+                    table.ForeignKey(
+                        name: "FK_LeaveSection_Manager_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "Manager",
+                        principalColumn: "ManagerId"
+                       );
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +86,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "10, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -105,6 +112,11 @@ namespace ProjectAPI.Migrations
                 name: "IX_LeaveSection_EmployeeId",
                 table: "LeaveSection",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LeaveSection_ManagerId",
+                table: "LeaveSection",
+                column: "ManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveType_EmployeeId",

@@ -76,6 +76,9 @@ namespace ProjectAPI.Migrations
                     b.Property<string>("ManagerComments")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumberOfDay")
                         .HasColumnType("int");
 
@@ -91,6 +94,8 @@ namespace ProjectAPI.Migrations
                     b.HasKey("LeaveID");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("LeaveSection");
                 });
@@ -161,7 +166,15 @@ namespace ProjectAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjectAPI.Models.ManagerModelDB", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Employee");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("ProjectAPI.Models.LeaveTypeDB", b =>

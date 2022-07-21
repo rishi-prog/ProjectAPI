@@ -18,7 +18,11 @@ namespace ProjectAPI.Models
         [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         public virtual EmployeeModelDB Employee { get; set; }
- 
+
+        [ForeignKey("ManagerId")]
+        public int ManagerId { get; set; }
+        public virtual ManagerModelDB Manager { get; set; }
+
         public int NumberOfDay { get; set; }
         public DateTime StrartDate { get; set; }
         public DateTime EndDate { get; set; }
