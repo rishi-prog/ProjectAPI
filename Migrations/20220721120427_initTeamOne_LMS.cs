@@ -15,7 +15,8 @@ namespace ProjectAPI.Migrations
                         .Annotation("SqlServer:Identity", "5000, 1"),
                     ManagerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false)
+                    ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,7 +87,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "10, 1"),
+                        .Annotation("SqlServer:Identity", "200, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),

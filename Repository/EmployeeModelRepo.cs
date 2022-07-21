@@ -44,17 +44,18 @@ namespace ProjectAPI.Repository
             return 1;
         }
 
-        public async Task<int> Login_Async(int  id, string password)
+        public async Task<EmployeeModel> Login_Async(int id, string password)
         {
             var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId == id & x.Password == password);
-            if (data != null) {
 
-                var map = mapper.Map<EmployeeModel>(data);
-                return 1;
-            }
 
-            return 0;
-           
+
+            var map = mapper.Map<EmployeeModel>(data);
+
+
+            return map;
+
+
         }
 
         public async Task<EmployeeModelDB> Login_Async2(string email, string password)

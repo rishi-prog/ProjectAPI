@@ -16,5 +16,6 @@ namespace ProjectAPI.Models
         public string ManagerName { get; set; }
         public string ManagerEmail { get; set; }
         public long ManagerMobileNumber { get; set; }
+        public string Password { get; set; }
     }
 }

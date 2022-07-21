@@ -142,6 +142,9 @@ namespace ProjectAPI.Migrations
                     b.Property<string>("ManagerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ManagerId");
 
                     b.ToTable("Manager");

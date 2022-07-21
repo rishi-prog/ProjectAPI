@@ -45,13 +45,11 @@ namespace ProjectAPI.Controllers
 
         [HttpGet]
         [Route("Login/{id}/{password}")]
-        public async Task<int> Login(int id, string password)
+        public async Task<EmployeeModel> Login(int id, string password)
         {
             var add = await employeeModelRepo.Login_Async(id, password);
-            if (add == 0) {
-                return 0;
-            }
-            return 1;
+
+            return add;
         }
         [HttpDelete]
         [Route("Delete/{id}")]
