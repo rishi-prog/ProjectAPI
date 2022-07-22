@@ -12,7 +12,7 @@ namespace ProjectAPI.Repository
         Task<List<EmployeeModel>> ShowAllEMPAsync();
         Task<int> Insert_Employee_Async(EmployeeModelDB employeeModelDB);
         Task<EmployeeModel> Login_Async(int id, string password);
-        Task<EmployeeModelDB> Login_Async2(string email, string password);
+     
 
         Task<int> DeleteEmp_Async(int ?id);
 

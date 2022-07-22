@@ -48,23 +48,17 @@ namespace ProjectAPI.Repository
         {
             var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId == id & x.Password == password);
 
+            if (data != null) {
 
+                var map = mapper.Map<EmployeeModel>(data);
+                return map;
 
-            var map = mapper.Map<EmployeeModel>(data);
-
-
-            return map;
+            }
+            throw new Exception("Invalid Credential ");
 
 
         }
-
-        public async Task<EmployeeModelDB> Login_Async2(string email, string password)
-        {
-            var data = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeEmail == email & x.Password == password);
-            return data;
-            
-        }
-
+    
         public async Task<EmployeeModel> MyDetailsAsync(int? id)
         {
             var details = await dataAccessLayerDB.Employee.FirstOrDefaultAsync(x => x.EmployeeId==id);
