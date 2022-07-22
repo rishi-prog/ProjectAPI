@@ -53,9 +53,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "400, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ManagerId = table.Column<int>(type: "int", nullable: false),
+                        .Annotation("SqlServer:Identity", "2000, 1"),
                     NumberOfDay = table.Column<int>(type: "int", nullable: false),
                     StrartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -63,7 +61,9 @@ namespace ProjectAPI.Migrations
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AppliedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ManagerComments = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ManagerComments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ManagerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,14 +72,12 @@ namespace ProjectAPI.Migrations
                         name: "FK_LeaveSection_Employee_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employee",
-                        principalColumn: "EmployeeId"
-                       );
+                        principalColumn: "EmployeeId");
                     table.ForeignKey(
                         name: "FK_LeaveSection_Manager_ManagerId",
                         column: x => x.ManagerId,
                         principalTable: "Manager",
-                        principalColumn: "ManagerId"
-                       );
+                        principalColumn: "ManagerId");
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +85,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "200, 1"),
+                        .Annotation("SqlServer:Identity", "800, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),

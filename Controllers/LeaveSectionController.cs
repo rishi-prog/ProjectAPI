@@ -37,7 +37,7 @@ namespace ProjectAPI.Controllers
             return 1;
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("NewLeave")]
 
         public async Task<int> AddNewLeave(LeaveSection leave)

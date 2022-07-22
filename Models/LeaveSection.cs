@@ -11,6 +11,7 @@ namespace ProjectAPI.Models
         public int LeaveID { get; set; }
         [Required]
         public int EmployeeId { get; set; }
+        public int ManagerId { get; set; }
         [Required]
         public int NumberOfDay { get; set; }
         [Required]
