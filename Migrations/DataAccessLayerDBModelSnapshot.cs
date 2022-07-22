@@ -41,6 +41,9 @@ namespace ProjectAPI.Migrations
                     b.Property<string>("EmployeeName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Images")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
 

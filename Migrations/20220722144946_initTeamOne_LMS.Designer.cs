@@ -10,7 +10,7 @@ using ProjectAPI.DataAccessLayer;
 namespace ProjectAPI.Migrations
 {
     [DbContext(typeof(DataAccessLayerDB))]
-    [Migration("20220722095910_initTeamOne_LMS")]
+    [Migration("20220722144946_initTeamOne_LMS")]
     partial class initTeamOne_LMS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,9 @@ namespace ProjectAPI.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Images")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ManagerId")

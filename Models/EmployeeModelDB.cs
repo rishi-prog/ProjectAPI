@@ -20,8 +20,9 @@ namespace ProjectAPI.Models
         public DateTime DateOfJoin { get; set; }
         public string EmployeeDepartment { get; set; }
 
-        public string Password { get; set; }
 
+        public string Password { get; set; }
+        public string Images { get; set; }
         public int ManagerId { get; set; }
         [ForeignKey("ManagerId")]
         public virtual ManagerModelDB Manager { get; set; }
