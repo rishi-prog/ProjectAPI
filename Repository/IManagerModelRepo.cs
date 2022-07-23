@@ -8,5 +8,6 @@ namespace ProjectAPI.Repository
    public interface IManagerModelRepo
     {
         Task<ManagerModel> getManagerAsync(int? id);
+        Task<ManagerModel> MLogin_Async(int id, string password);
     }
 }

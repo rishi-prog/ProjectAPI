@@ -23,10 +23,25 @@ namespace ProjectAPI.Repository
 
         public async Task<ManagerModel> getManagerAsync(int? id)
         {
-            var details = await dataAccessLayerDB.Manager.FirstOrDefaultAsync(x=>x.ManagerId==id);
+            var details = await dataAccessLayerDB.Manager.FirstOrDefaultAsync(x=>x.EmployeeId==id);
             var details_View = mapper.Map<ManagerModel>(details);
 
             return details_View;
+
+        }
+        public async Task<ManagerModel> MLogin_Async(int id, string password)
+        {
+            var data = await dataAccessLayerDB.Manager.FirstOrDefaultAsync(x => x.EmployeeId == id & x.Password == password);
+
+            if (data != null)
+            {
+
+                var map = mapper.Map<ManagerModel>(data);
+                return map;
+
+            }
+            throw new Exception("Invalid Credential ");
+
 
         }
     }

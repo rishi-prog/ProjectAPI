@@ -10,7 +10,7 @@ using ProjectAPI.DataAccessLayer;
 namespace ProjectAPI.Migrations
 {
     [DbContext(typeof(DataAccessLayerDB))]
-    [Migration("20220722144946_initTeamOne_LMS")]
+    [Migration("20220723113414_initTeamOne_LMS")]
     partial class initTeamOne_LMS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,8 +53,6 @@ namespace ProjectAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
-
-                    b.HasIndex("ManagerId");
 
                     b.ToTable("Employee");
                 });
@@ -138,6 +136,9 @@ namespace ProjectAPI.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ManagerEmail")
                         .HasColumnType("nvarchar(max)");
 
@@ -152,18 +153,9 @@ namespace ProjectAPI.Migrations
 
                     b.HasKey("ManagerId");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("Manager");
-                });
-
-            modelBuilder.Entity("ProjectAPI.Models.EmployeeModelDB", b =>
-                {
-                    b.HasOne("ProjectAPI.Models.ManagerModelDB", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("ProjectAPI.Models.LeaveSectionDB", b =>
@@ -186,6 +178,17 @@ namespace ProjectAPI.Migrations
                 });
 
             modelBuilder.Entity("ProjectAPI.Models.LeaveTypeDB", b =>
+                {
+                    b.HasOne("ProjectAPI.Models.EmployeeModelDB", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("ProjectAPI.Models.ManagerModelDB", b =>
                 {
                     b.HasOne("ProjectAPI.Models.EmployeeModelDB", "Employee")
                         .WithMany()

@@ -8,27 +8,11 @@ namespace ProjectAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Manager",
-                columns: table => new
-                {
-                    ManagerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "5000, 1"),
-                    ManagerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Manager", x => x.ManagerId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employee",
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "10000, 1"),
+                        .Annotation("SqlServer:Identity", "10001, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeMobieNumber = table.Column<long>(type: "bigint", nullable: false),
@@ -41,11 +25,50 @@ namespace ProjectAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employee", x => x.EmployeeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeaveType",
+                columns: table => new
+                {
+                    LeaveTypeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "89823, 98"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EarnedLeave = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeaveType", x => x.LeaveTypeID);
                     table.ForeignKey(
-                        name: "FK_Employee_Manager_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "Manager",
-                        principalColumn: "ManagerId",
+                        name: "FK_LeaveType_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Manager",
+                columns: table => new
+                {
+                    ManagerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "5001, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ManagerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ManagerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ManagerMobileNumber = table.Column<long>(type: "bigint", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manager", x => x.ManagerId);
+                    table.ForeignKey(
+                        name: "FK_Manager_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -54,7 +77,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "2000, 1"),
+                        .Annotation("SqlServer:Identity", "8789, 8348"),
                     NumberOfDay = table.Column<int>(type: "int", nullable: false),
                     StrartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -81,33 +104,6 @@ namespace ProjectAPI.Migrations
                         principalColumn: "ManagerId");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LeaveType",
-                columns: table => new
-                {
-                    LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "200, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EarnedLeave = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LeaveType", x => x.LeaveTypeID);
-                    table.ForeignKey(
-                        name: "FK_LeaveType_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_ManagerId",
-                table: "Employee",
-                column: "ManagerId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveSection_EmployeeId",
                 table: "LeaveSection",
@@ -122,6 +118,11 @@ namespace ProjectAPI.Migrations
                 name: "IX_LeaveType_EmployeeId",
                 table: "LeaveType",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Manager_EmployeeId",
+                table: "Manager",
+                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -133,10 +134,10 @@ namespace ProjectAPI.Migrations
                 name: "LeaveType");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Manager");
 
             migrationBuilder.DropTable(
-                name: "Manager");
+                name: "Employee");
         }
     }
 }

@@ -24,8 +24,7 @@ namespace ProjectAPI.Models
         public string Password { get; set; }
         public string Images { get; set; }
         public int ManagerId { get; set; }
-        [ForeignKey("ManagerId")]
-        public virtual ManagerModelDB Manager { get; set; }
+      
 
 
 

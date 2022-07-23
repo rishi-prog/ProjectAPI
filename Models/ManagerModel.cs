@@ -12,7 +12,9 @@ namespace ProjectAPI.Models
             
             public int ManagerId { get; set; }
             [Required]
-            public string ManagerName { get; set; }
+        public int EmployeeId { get; set; }
+        [Required]
+        public string ManagerName { get; set; }
            [Required]
             public string ManagerEmail { get; set; }
            [Required]

@@ -10,9 +10,11 @@ namespace ProjectAPI.Models
 {
     public class ManagerModelDB
     {
-        [Key]
+        [Key]   
         public int ManagerId { get; set; }
-       
+        [ForeignKey("EmployeeId")]
+        public int EmployeeId { get; set; }
+        public virtual EmployeeModelDB Employee { get; set; }
         public string ManagerName { get; set; }
         public string ManagerEmail { get; set; }
         public long ManagerMobileNumber { get; set; }
