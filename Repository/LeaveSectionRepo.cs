@@ -43,12 +43,31 @@ namespace ProjectAPI.Repository
             
         }
 
+
         public  List<LeaveSection> ShowAllLeaves (int? id)
         {
             var all_leaves = dataAccessLayerDB.LeaveSection.Where(x => x.EmployeeId == id);
             var leaves =  mapper.Map<List<LeaveSection>>(all_leaves);
             return leaves;
             
+        }
+
+        public  List<LeaveSection> ShowAllPending(int? id)
+        {
+            var leave = dataAccessLayerDB.LeaveSection.Where(x => x.ManagerId == id & x.Status == "Pending");
+            if (leave != null) 
+            {
+                var map_With_dp = mapper.Map<List<LeaveSection>>(leave);
+                return map_With_dp;
+            }
+            throw new Exception("Invalid Credential ");
+        }
+
+        public LeaveSection ShowLeave(int? id)
+        {
+            var data = dataAccessLayerDB.LeaveSection.FirstOrDefault(x =>x.LeaveID ==id);
+            var mapd= mapper.Map<LeaveSection>(data);
+            return mapd;
         }
     }
 }

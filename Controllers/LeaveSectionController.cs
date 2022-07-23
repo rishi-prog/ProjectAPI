@@ -18,14 +18,14 @@ namespace ProjectAPI.Controllers
         public LeaveSectionController(ILeaveSectionRepo leaveSectionRepo)
         {
             this.leaveSectionRepo = leaveSectionRepo;
-     
+
         }
         [HttpGet]
         [Route("ShowAll_Leaves/{id}")]
-        public  List<LeaveSection> Leave_List(int? id)
+        public List<LeaveSection> Leave_List(int? id)
         {
             var list = leaveSectionRepo.ShowAllLeaves(id);
-            return list ;
+            return list;
         }
 
         [HttpPatch]
@@ -33,7 +33,7 @@ namespace ProjectAPI.Controllers
 
         public int ChangeState(int? id, LeaveSection leaveSection)
         {
-            var data = leaveSectionRepo.ManagerState(id,leaveSection);
+            var data = leaveSectionRepo.ManagerState(id, leaveSection);
             return 1;
         }
 
@@ -43,8 +43,25 @@ namespace ProjectAPI.Controllers
         public async Task<int> AddNewLeave(LeaveSection leave)
         {
             var newleave = await leaveSectionRepo.NewLeave(leave);
-            return 1; 
+            return 1;
         }
+
+        [HttpGet]
+        [Route("ShowAllPendingLeave")]
+        public List<LeaveSection> ShowPending(int? id)
+        {
+            var data = leaveSectionRepo.ShowAllPending(id);
+            return data;
+        }
+
+        [HttpGet]
+        [Route("ShowLeave/{id}")]
+        public IActionResult ShowLeave(int? id) 
+        {
+            var data = leaveSectionRepo.ShowLeave(id);
+            return Ok(data);
+        }
+
     }
 
    

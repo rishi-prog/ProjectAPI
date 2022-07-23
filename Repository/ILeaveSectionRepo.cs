@@ -13,5 +13,9 @@ namespace ProjectAPI.Repository
 
         Task<int> NewLeave(LeaveSection leaveSection);
 
+       List<LeaveSection> ShowAllPending(int? id);
+
+        LeaveSection ShowLeave(int? id);
+
     }
 }
