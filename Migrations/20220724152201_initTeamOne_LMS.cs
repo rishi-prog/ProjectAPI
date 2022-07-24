@@ -19,7 +19,6 @@ namespace ProjectAPI.Migrations
                     DateOfJoin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EmployeeDepartment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -32,7 +31,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "89823, 98"),
+                        .Annotation("SqlServer:Identity", "889897, 90869"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     SickLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaternityLeave = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -77,7 +76,7 @@ namespace ProjectAPI.Migrations
                 columns: table => new
                 {
                     LeaveID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "8789, 8348"),
+                        .Annotation("SqlServer:Identity", "909989, 439587"),
                     NumberOfDay = table.Column<int>(type: "int", nullable: false),
                     StrartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),

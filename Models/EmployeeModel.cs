@@ -20,7 +20,6 @@ namespace ProjectAPI.Models
         public DateTime DateOfJoin { get; set; }
         [Required]
         public string EmployeeDepartment { get; set; }
-        public string Images { get; set; }
         [Required]
         public int ManagerId { get; set; }
 
