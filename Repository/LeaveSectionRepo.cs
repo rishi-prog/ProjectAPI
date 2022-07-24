@@ -20,17 +20,30 @@ namespace ProjectAPI.Repository
             this.mapper = mapper;
         }
 
+        public int Manager(int? id, LeaveSection leaveSection)
+        {
+            var data = dataAccessLayerDB.LeaveSection.Where(x => x.LeaveID == id).FirstOrDefault();
+            if (data != null)
+            {          
+                data.Status = leaveSection.Status;
+                dataAccessLayerDB.SaveChanges();
+                return 1;
+            }
+            throw new Exception("Something Went Wrong  ");
+        }
+
         public int ManagerState(int? id, LeaveSection leaveSection)
         {
-            var data = dataAccessLayerDB.LeaveSection.Where(x => x.EmployeeId == id).FirstOrDefault();
+            var data = dataAccessLayerDB.LeaveSection.Where(x => x.LeaveID == id).FirstOrDefault();
             if (data != null) 
             {
                 data.ManagerComments = leaveSection.ManagerComments;
                 data.Status = leaveSection.Status;
                 dataAccessLayerDB.SaveChanges();
+                return 1;
             }
+            throw new Exception("Something Went Wrong  ");
 
-            return 1;
         }
 
         public async Task<int> NewLeave(LeaveSection leaveSection)

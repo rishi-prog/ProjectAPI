@@ -10,6 +10,7 @@ namespace ProjectAPI.Repository
     {
        List<LeaveSection> ShowAllLeaves(int? id);
         int ManagerState(int? id , LeaveSection leaveSection );
+        int Manager(int? id, LeaveSection leaveSection);
 
         Task<int> NewLeave(LeaveSection leaveSection);
 

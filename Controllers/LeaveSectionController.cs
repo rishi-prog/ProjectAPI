@@ -37,6 +37,15 @@ namespace ProjectAPI.Controllers
             return 1;
         }
 
+        [HttpPatch]
+        [Route("Approve_Deny/{id}")]
+
+        public int Approve_Deny(int? id, LeaveSection leaveSection)
+        {
+            var data = leaveSectionRepo.Manager(id, leaveSection);
+            return 1;
+        }
+
         [HttpPost]
         [Route("NewLeave")]
 
